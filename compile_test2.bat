@@ -1,0 +1,1 @@
+cl /EHsc /std:c++17 test2.cpp Ws2_32.lib
