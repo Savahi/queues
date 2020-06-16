@@ -22,7 +22,8 @@ struct  MyConsumer : IConsumer<std::string, int>
         int result = recv(client_socket, _socket_request_buf, sizeof(_socket_request_buf)-1, 0);
         if( result == 0 || result == SOCKET_ERROR )
             return;
-        //std::cout << "Client sent: " << _socket_request_buf << std::endl;    
+		_socket_request_buf[result] = '\x0';
+        std::cout << "Client sent: " << _socket_request_buf << std::endl;    
         if( strncmp( _socket_request_buf, "GET / ", 6) == 0 ) {
             send(client_socket, _root_response, strlen(_root_response), 0);        
         } else {
